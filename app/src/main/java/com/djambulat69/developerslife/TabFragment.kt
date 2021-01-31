@@ -2,7 +2,6 @@ package com.djambulat69.developerslife
 
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -147,7 +146,6 @@ class TabFragment : Fragment() {
                     binding.postProgressBar.visibility = View.VISIBLE
                 }
                 is Resource.Success<DevLifePost> -> {
-                    Log.d(TAG, "got data: ${it.data}")
                     showUI()
                     binding.postProgressBar.visibility = View.GONE
 
@@ -157,7 +155,6 @@ class TabFragment : Fragment() {
                     }
                 }
                 is Resource.Error<DevLifePost> -> {
-                    Log.d(TAG, "Error: ${it.message}")
                     hideUI()
                     showErrorUI()
                     with(binding) {
