@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Developers Life</string>
+
+    <string name="latest_tab_name">Последнее</string>
+    <string name="top_tab_name">Лучшее</string>
+    <string name="hot_tab_name">Горячее</string>
+    <string name="next_button_text">След</string>
+    <string name="prev_button_text">Пред</string>
+    <string name="connection_error_text">
+        Ошибка! Проверьте подключение к сети и попробуйте еще раз.
+    </string>
+    <string name="retry_view_text">Повторить</string>
+    <string name="no_posts_text">Нет постов</string>
+    <string name="no_more_posts_text">Больше постов нет</string>
+</resources>

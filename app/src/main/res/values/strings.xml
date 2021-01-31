@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Developers Life</string>
+
+    <string name="latest_tab_name">Latest</string>
+    <string name="top_tab_name">Top</string>
+    <string name="hot_tab_name">Hot</string>
+    <string name="next_button_text">Next</string>
+    <string name="prev_button_text">Prev</string>
+    <string name="connection_error_text">
+        Error! Please check your internet connection and try again.
+    </string>
+    <string name="retry_view_text">Retry</string>
+    <string name="no_posts_text">No posts today</string>
+    <string name="no_more_posts_text">No more posts</string>
+</resources>
