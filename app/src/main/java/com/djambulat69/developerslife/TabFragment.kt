@@ -27,7 +27,7 @@ class TabFragment : Fragment() {
     private var _binding: FragmentTabBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: TabFragmentViewModel by viewModels{
+    private val viewModel: TabFragmentViewModel by viewModels {
         TabFragmentViewModel.Factory(category!!, requireContext())
     }
 
@@ -41,7 +41,7 @@ class TabFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentTabBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -74,7 +74,7 @@ class TabFragment : Fragment() {
         _binding = null
     }
 
-    private fun hideUI(){
+    private fun hideUI() {
         with(binding) {
             val gone = View.GONE
             gifImageView.visibility = gone
@@ -87,7 +87,8 @@ class TabFragment : Fragment() {
             postErrorTextView.visibility = gone
         }
     }
-    private fun showUI(){
+
+    private fun showUI() {
         with(binding) {
             val visible = View.VISIBLE
             gifImageView.visibility = visible
@@ -100,47 +101,52 @@ class TabFragment : Fragment() {
         }
     }
 
-    private fun showErrorUI(){
-        with(binding){
+    private fun showErrorUI() {
+        with(binding) {
             val visible = View.VISIBLE
             postRetryButton.visibility = visible
             postErrorTextView.visibility = visible
         }
     }
-    private fun hideErrorUI(){
-        with(binding){
+
+    private fun hideErrorUI() {
+        with(binding) {
             val gone = View.GONE
             postRetryButton.visibility = gone
             postErrorTextView.visibility = gone
         }
     }
 
-    private fun loadGif(url: String){
+    private fun loadGif(url: String) {
         Glide.with(this)
-                .load(url)
-                .addListener(object: RequestListener<Drawable>{
-                    override fun onLoadFailed(e: GlideException?,
-                                              model: Any?, target: Target<Drawable>?,
-                                              isFirstResource: Boolean): Boolean {
-                        return false
-                    }
+            .load(url)
+            .addListener(object : RequestListener<Drawable> {
+                override fun onLoadFailed(
+                    e: GlideException?,
+                    model: Any?, target: Target<Drawable>?,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    return false
+                }
 
-                    override fun onResourceReady(resource: Drawable?,
-                                                 model: Any?, target: Target<Drawable>?,
-                                                 dataSource: DataSource?,
-                                                 isFirstResource: Boolean): Boolean {
-                        binding.gifProgressBar.visibility = View.GONE
-                        return false
-                    }
+                override fun onResourceReady(
+                    resource: Drawable?,
+                    model: Any?, target: Target<Drawable>?,
+                    dataSource: DataSource?,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    binding.gifProgressBar.visibility = View.GONE
+                    return false
+                }
 
-                })
-                .into(binding.gifImageView)
+            })
+            .into(binding.gifImageView)
     }
 
-    private fun setupObserver(){
+    private fun setupObserver() {
         binding.postProgressBar.visibility = View.VISIBLE
         viewModel.post.observe(viewLifecycleOwner, Observer {
-            when(it){
+            when (it) {
                 is Resource.Loading<DevLifePost> -> {
                     hideUI()
                     binding.postProgressBar.visibility = View.VISIBLE
