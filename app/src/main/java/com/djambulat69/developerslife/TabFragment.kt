@@ -28,7 +28,7 @@ class TabFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: TabFragmentViewModel by viewModels {
-        TabFragmentViewModel.Factory(category!!, requireContext())
+        TabFragmentViewModel.Factory(category!!)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

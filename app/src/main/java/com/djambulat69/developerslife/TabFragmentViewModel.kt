@@ -1,6 +1,5 @@
 package com.djambulat69.developerslife
 
-import android.content.Context
 import androidx.lifecycle.*
 import com.djambulat69.developerslife.api.DevLifePost
 import kotlinx.coroutines.Dispatchers
@@ -9,15 +8,14 @@ private const val TAG = "TabFragmentViewModel"
 private const val PAGE_SIZE = 5
 
 class TabFragmentViewModel(
-    private val category: String,
-    private val context: Context
+    private val category: String
 ) : ViewModel() {
 
     @Suppress("UNCHECKED_CAST")
-    class Factory(private val category: String, private val context: Context) :
+    class Factory(private val category: String) :
         ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            return TabFragmentViewModel(category, context) as T
+            return TabFragmentViewModel(category) as T
         }
     }
 
@@ -49,14 +47,11 @@ class TabFragmentViewModel(
                 emit(Resource.Success(freshFivePosts[mutIndex]))
             }
         } catch (e: IndexOutOfBoundsException) {
-            val resMessage = if (e.message == "Index: 0, Size: 0")
-                context.getString(R.string.no_posts_text)
-            else
-                context.getString(R.string.no_more_posts_text)
+            val resMessage = "No posts"
 
             emit(Resource.Error(resMessage))
         } catch (e: Exception) {
-            emit(Resource.Error(message = context.getString(R.string.connection_error_text)))
+            emit(Resource.Error(message = "Check internet connection"))
         }
     }
 
